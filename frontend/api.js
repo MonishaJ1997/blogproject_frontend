@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000/api";
+const API_URL = "https://blogproject-backend-1-ul6q.onrender.com/api";
 
 // --- GET: Load all posts ---
 async function loadPosts() {
@@ -116,3 +116,4 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch((err) => console.error("Failed to fetch posts:", err));
 });
+
