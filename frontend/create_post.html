@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Post</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+  form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 20px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 150px;
+    }
+
+    .cta {
+      width: 100%;
+      padding: 12px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .cta:hover {
+      background: #0056b3;
+    }
+
+</style>
+<body>
+
+
+  <header>
+    <h1>📝 Mini Blog</h1>
+
+
+    <nav>
+  <a href="index.html">🏠 Home</a>
+  
+  <a href="create_post.html">New Post</a>
+   <a href="login.html">Login</a>
+  <button id="refresh-btn">🔄 Refresh</button>
+</nav>
+
+    
+  </header>
+  <h1>New Post</h1>
+  <form onsubmit="createPost(event)">
+    <input type="text" id="title" placeholder="Title" required><br>
+    <textarea id="content" placeholder="Content" required></textarea><br>
+    <button class="cta" type ="submit">Publish</button>
+  </form>
+
+  <script>
+    async function createPost(e) {
+      e.preventDefault();
+      let token = localStorage.getItem("token");
+      let res = await fetch("http://127.0.0.1:8000/api/posts/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({
+          title: document.getElementById("title").value,
+          content: document.getElementById("content").value
+        })
+      });
+      if (res.ok) {
+        alert("Post created!");
+        window.location.href = "index.html";
+      } else {
+        alert("Error creating post.");
+      }
+    }
+  </script>
+</body>
+</html>

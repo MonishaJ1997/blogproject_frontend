@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Blog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📝 Mini Blog</h1>
+   <nav>
+  <a href="index.html">🏠 Home</a>
+  
+  <a href="create_post.html">New Post</a>
+   <a href="login.html">Login</a>
+  <button id="refresh-btn">🔄 Refresh</button>
+</nav>
+  </header>
+
+  <main>
+    <div id="posts" class="post-container"></div>
+  </main>
+
+  <script src="api.js"></script>
+  <script>
+    document.getElementById("refresh-btn").addEventListener("click", loadPosts);
+    loadPosts();
+  </script>
+</body>
+</html>
